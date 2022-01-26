@@ -31,16 +31,16 @@ public class RandomCubes : MonoBehaviour
     void Update()
     {
         numberOfCubes++;
-        gameObject gObj = Instantiate<gameObject>(cubePrefab);
+        GameObject gObj = Instantiate<GameObject>(cubePrefab);
         gObj.name = "Cube" + numberOfCubes;
 
         // Transform to a random point in the square of size one and add to list 
         gObj.transform.position = Random.insideUnitSphere;
         gameObjectList.Add(gObj);
 
-        Color randColor = new Color(RandomCubes.value, RandomCubes.value, RandomCubes.value);
-        gObj.GetComponent<Renderer>.material.color = randColor;
-
+        Color randColor = new Color(Random.value, Random.value, Random.value);
+        gObj.GetComponent<Renderer>().material.color = randColor;
+       
         // Transform the scale for each game object, while checking
         // to add to remove list
         List<GameObject> removeList = new List<GameObject>();
@@ -48,7 +48,7 @@ public class RandomCubes : MonoBehaviour
         {
             float scale = goTemp.transform.localScale.x;
             scale *= scalingFactor;
-            goTemp.trasform.localScale = Vector3.one * scale;
+            goTemp.transform.localScale = Vector3.one * scale;
 
             if (scale <= 0.1f)
             {
